@@ -3,12 +3,11 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div class="container w-50 mt">
+    <div class="container w-50 mtLogin">
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
-
             {% if app.user %}
                 <div class="mb-3">
                   Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
@@ -39,7 +38,6 @@
                 </label>
             </div>
             #}
-
             <div class="text-center">
               <button class="btn btn-md btn-primary mt-5" type="submit">
                   Connexion
