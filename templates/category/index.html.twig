@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Category index</h1>
-
+    <div class="container mtCategory w-75">
+        <h1 class="h3 font-weight-normal text-center">Toutes les catégories</h1>
         {# total items count #}
-        <div class="count mt-5">
+        <div class="count mt-3 mb-3">
             Nombre de catégories : {{ categories.getTotalItemCount }}
         </div>
-
-        <table class="table">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Nom</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th class="text-center">Actions</th>
             </tr>
             </thead>
             <tbody>
             {% for category in categories %}
                 <tr>
-                    <td>{{ category.id }}</td>
-                    <td>{{ category.name }}</td>
+                    <td class="text-center">{{ category.id }}</td>
+                    <td class="text-center">{{ category.name }}</td>
                     <td>{{ category.description }}</td>
-                    <td>
-                        <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                        <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-success" href="{{ path('category_show', {'id': category.id}) }}"><i class="bi bi-eye"></i></a>
+                        <a class="btn btn-sm btn-warning mt-1" href="{{ path('category_edit', {'id': category.id}) }}"><i class="bi bi-pencil"></i></a>
                     </td>
                 </tr>
             {% else %}
@@ -42,9 +40,8 @@
         <div class="navigation">
             {{ knp_pagination_render(categories) }}
         </div>
-
-        <a href="{{ path('category_new') }}" class="btn btn-success">Create new</a>
-
+        <div class="text-center mt-5">
+          <a href="{{ path('category_new') }}" class="btn btn-md btn-primary">Ajouter une catégorie</a>
+        </div>
     </div>
-
 {% endblock %}
