@@ -7,10 +7,12 @@
       <div class="jumbotron text-center mx-auto">
         <h1 class="mb-5">Bienvenue dans notre bibliotheque</h1>
         <p>Lorem ipsum dolor sit amet. Et sunt ratione sed unde beatae eos incidunt exercitationem sit molestias dolorem. Sit laboriosam impedit  reprehenderit error sit beatae dignissimos sit officia fugiat sed laudantium aliquam ea suscipit nostrum. Est dolor harum et odit temporibus et tempore quod qui quidem tempora id aspernatur fugit quo maxime maiores! </p><p>Est nesciunt facere ea sapiente ducimus vel ullam repellendus quo atque ipsa. Qui asperiores deleniti et inventore nisi nam illo delectus ut voluptas earum. Ut voluptatem similique ab atque libero et tempore similique est expedita repudiandae est illum odio 33 dolores amet quo enim voluptatem. Vel esse ducimus vel esse velit qui cupiditate asperiores. </p><p>Et cupiditate dolorum ut officiis temporibus ut rerum dolorum rem quasi quia id natus dolor. Ea omnis impedit At similique nemo qui nihil modi aut exercitationem laborum. Aut natus cumque et nisi asperiores ad sunt accusantium ut mollitia excepturi et cumque molestias et exercitationem similique! </p>
+        {% if app.user == false %}
         <div class="mt-5">
           <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
           <a href="{{ path('app_register') }}" class="btn btn-danger">Inscription</a>
         </div>
+        {% endif %}
       </div>
     </div>
 {% endblock %}
