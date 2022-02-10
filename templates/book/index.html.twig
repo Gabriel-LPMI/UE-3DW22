@@ -20,7 +20,18 @@
             <th scope="row">{{ book.title }}</th>
             <td>{{ book.author }}</td>
             <td>{{ book.nbExemplaire }}</td>
-            <td><a href="" class="btn btn-secondary"></a>Emprunter</td>
+            <td>
+                {% set isEmprunt = false %}
+                {% for emprunt in book.emprunts %}
+                    {% if emprunt.user == app.user %}
+                        <a href="" class="btn btn-secondary">Retourner</a>
+                        {% set isEmprunt = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if isEmprunt == false %}
+                <a href="{{ path('livre_emprunter', {'id':book.id}) }}" class="btn btn-secondary">Emprunter</a>
+                {% endif %}
+            </td>
           </tr>
         {% endfor %}
 
