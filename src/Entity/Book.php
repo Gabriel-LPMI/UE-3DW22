@@ -6,9 +6,12 @@ use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
+ * @Vich\Uploadable
  */
 class Book
 {
@@ -58,6 +61,12 @@ class Book
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="img_book", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="integer")
@@ -195,6 +204,26 @@ class Book
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     public function getNbExemplaire(): ?int
