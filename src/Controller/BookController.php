@@ -27,7 +27,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/emprunter", name="livre_emprunter")
+     * @Route("/emprunter/{id}", name="livre_emprunter")
      */
     public function emprunter(Book $book, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -37,6 +37,16 @@ class BookController extends AbstractController
         $emprunt->setUser($user)->setLivre($book);
         
         $entityManagerInterface->persist($emprunt);
+        $entityManagerInterface->flush();
+        return $this->redirectToRoute('livre_index');
+    }
+
+    /**
+     * @Route("/retourner/{id}", name="livre_retourner")
+     */
+    public function retourner(Emprunt $emprunt, EntityManagerInterface $entityManagerInterface): Response
+    {
+        $entityManagerInterface->remove($emprunt);
         $entityManagerInterface->flush();
         return $this->redirectToRoute('livre_index');
     }

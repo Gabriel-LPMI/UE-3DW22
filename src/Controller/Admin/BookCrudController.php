@@ -31,7 +31,6 @@ class BookCrudController extends AbstractCrudController
             TextField::new('image', 'Image')->setColumns(8),
             NumberField::new('nbExemplaire', 'Nombre d\'exemplaire')->setColumns(8),
             BooleanField::new('isActive', 'Activé ?')->setColumns(8)->onlyOnForms(),
-            AssociationField::new('user', 'Créer par : ')->setColumns(8)->hideOnIndex()
         ];
     }
 

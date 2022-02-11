@@ -24,7 +24,7 @@
                 {% set isEmprunt = false %}
                 {% for emprunt in book.emprunts %}
                     {% if emprunt.user == app.user %}
-                        <a href="" class="btn btn-secondary">Retourner</a>
+                        <a href="{{ path('livre_retourner', {'id':emprunt.id}) }}" class="btn btn-danger">Retourner</a>
                         {% set isEmprunt = true %}
                     {% endif %}
                 {% endfor %}
