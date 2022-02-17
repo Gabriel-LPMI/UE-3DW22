@@ -31,9 +31,10 @@ class BookCrudController extends AbstractCrudController
             DateField::new('publishAt', 'Année de publication'),
             TextField::new('author', 'Auteur')->setColumns(8),
             NumberField::new('nbPage', 'Nombre de page')->setColumns(8),
-            TextareaField::new('imageFile')->setFormType(VichImageType::class)->setLabel('Image'),
+            TextareaField::new('imageFile', 'Image')->setFormType(VichImageType::class)->setLabel('Image')->onlyOnForms(),
             NumberField::new('nbExemplaire', 'Nombre d\'exemplaire')->setColumns(8),
             BooleanField::new('isActive', 'Activé ?')->setColumns(8)->onlyOnForms(),
+            ImageField::new('image', 'Image')->onlyOnIndex()->setBasePath('/uploads/imageBooks'),
         ];
     }
 
